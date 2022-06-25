@@ -1,0 +1,399 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.motion.widget.MotionLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layoutDescription="@xml/fragment_calculator_scene"
+    tools:context=".CalculatorFragment">
+
+    <TextView
+        android:id="@+id/tv_degree_radian"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:text="@string/radian"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <HorizontalScrollView
+        android:id="@+id/sv_expression"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:scrollbars="none"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/divider"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.533">
+
+        <TextView
+            android:id="@+id/tv_expression"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:paddingHorizontal="25dp"
+            android:textSize="25sp" />
+    </HorizontalScrollView>
+
+    <HorizontalScrollView
+        android:id="@+id/sv_result"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:scrollbars="none"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintBottom_toTopOf="@id/divider"
+        app:layout_constraintTop_toBottomOf="@id/tv_expression">
+
+        <TextView
+            android:id="@+id/tv_result"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:paddingHorizontal="25dp"
+            android:textSize="30sp" />
+    </HorizontalScrollView>
+
+    <com.google.android.material.divider.MaterialDivider
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        app:dividerColor="?attr/colorOnPrimary"
+        app:layout_constraintBottom_toTopOf="@id/numeric_layout"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TableLayout
+        android:id="@+id/numeric_layout"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHeight_percent="0.45"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintWidth_percent="0.71">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <Button
+                android:id="@+id/btn_seven"
+                style="@style/NumberStyle"
+                android:text="@string/seven" />
+
+            <Button
+                android:id="@+id/btn_eight"
+                style="@style/NumberStyle"
+                android:text="@string/eight" />
+
+            <Button
+                android:id="@+id/btn_nine"
+                style="@style/NumberStyle"
+                android:text="@string/nine" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <Button
+                android:id="@+id/btn_four"
+                style="@style/NumberStyle"
+                android:text="@string/four" />
+
+            <Button
+                android:id="@+id/btn_five"
+                style="@style/NumberStyle"
+                android:text="@string/five" />
+
+            <Button
+                android:id="@+id/btn_six"
+                style="@style/NumberStyle"
+                android:text="@string/six" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <Button
+                android:id="@+id/btn_one"
+                style="@style/NumberStyle"
+                android:text="@string/one" />
+
+            <Button
+                android:id="@+id/btn_two"
+                style="@style/NumberStyle"
+                android:text="@string/two" />
+
+            <Button
+                android:id="@+id/btn_three"
+                style="@style/NumberStyle"
+                android:text="@string/three" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <Button
+                android:id="@+id/btn_zero"
+                style="@style/NumberStyle"
+                android:text="@string/zero" />
+
+            <Button
+                android:id="@+id/btn_decimal"
+                style="@style/NumberStyle"
+                android:text="@string/decimal" />
+
+            <Button
+                android:id="@+id/btn_equals"
+                style="@style/NumberStyle"
+                android:text="@string/equals" />
+
+        </TableRow>
+    </TableLayout>
+
+    <TableLayout
+        android:id="@+id/operator_layout"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:weightSum="5"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/negative_margin"
+        app:layout_constraintHeight_percent="0.45"
+        app:layout_constraintStart_toEndOf="@id/numeric_layout">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <ImageButton
+                android:id="@+id/btn_backspace"
+                style="@style/ImageStyle"
+                android:src="@drawable/ic_backspace" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <Button
+                android:id="@+id/btn_divide"
+                style="@style/OperatorStyle"
+                android:text="@string/divide" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <Button
+                android:id="@+id/btn_multiply"
+                style="@style/OperatorStyle"
+                android:text="@string/multiply" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <Button
+                android:id="@+id/btn_subtract"
+                style="@style/OperatorStyle"
+                android:text="@string/subtract" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <Button
+                android:id="@+id/btn_add"
+                style="@style/OperatorStyle"
+                android:text="@string/add" />
+        </TableRow>
+
+    </TableLayout>
+
+    <Space
+        android:id="@+id/negative_margin"
+        android:layout_width="25dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.45" />
+
+
+    <View
+        android:id="@+id/touch_layout"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/transparent"
+        android:elevation="-10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/sliding_layout"
+        app:layout_constraintHeight_percent="0.45"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/sliding_layout"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="?attr/colorPrimary"
+        android:elevation="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHeight_percent="0.45"
+        app:layout_constraintStart_toStartOf="@id/negative_margin"
+        app:layout_constraintWidth_percent="0.8">
+
+        <View
+            android:id="@+id/button"
+            android:layout_width="25dp"
+            android:layout_height="match_parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TableLayout
+            android:id="@+id/scientific_operator_layout"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/button"
+            app:layout_constraintTop_toTopOf="parent">
+
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1">
+
+                <Button
+                    android:id="@+id/btn_inverse"
+                    style="@style/ScientificOperatorStyle"
+                    android:text="@string/inverse" />
+
+                <Button
+                    android:id="@+id/btn_degree_radian"
+                    style="@style/ScientificOperatorStyle"
+                    android:text="@string/degree" />
+
+                <Button
+                    android:id="@+id/btn_percent"
+                    style="@style/ScientificOperatorStyle"
+                    android:text="@string/percent" />
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1">
+
+                <Button
+                    android:id="@+id/btn_sin"
+                    style="@style/ScientificOperatorStyle"
+                    android:text="@string/trigSin" />
+
+                <Button
+                    android:id="@+id/btn_cos"
+                    style="@style/ScientificOperatorStyle"
+                    android:text="@string/trigCos" />
+
+                <Button
+                    android:id="@+id/btn_tan"
+                    style="@style/ScientificOperatorStyle"
+                    android:text="@string/trigTan" />
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1">
+
+                <Button
+                    android:id="@+id/btn_natural_log_exponential"
+                    style="@style/ScientificOperatorStyle"
+                    android:text="@string/naturalLog" />
+
+                <Button
+                    android:id="@+id/btn_log"
+                    style="@style/ScientificOperatorStyle"
+                    android:text="@string/log" />
+
+                <Button
+                    android:id="@+id/btn_square_root"
+                    style="@style/ScientificOperatorStyle"
+                    android:text="@string/squareRoot" />
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1">
+
+                <Button
+                    android:id="@+id/btn_pie"
+                    style="@style/ScientificOperatorStyle"
+                    android:text="@string/pie" />
+
+                <Button
+                    android:id="@+id/btn_e"
+                    style="@style/ScientificOperatorStyle"
+                    android:text="@string/e" />
+
+                <Button
+                    android:id="@+id/btn_power"
+                    style="@style/ScientificOperatorStyle"
+                    android:text="@string/xPower" />
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1">
+
+                <Button
+                    android:id="@+id/btn_parentheses_open"
+                    style="@style/ScientificOperatorStyle"
+                    android:text="@string/parenthesesOpen" />
+
+                <Button
+                    android:id="@+id/btn_parentheses_close"
+                    style="@style/ScientificOperatorStyle"
+                    android:text="@string/parenthesesClose" />
+
+                <Button
+                    android:id="@+id/btn_factorial"
+                    style="@style/ScientificOperatorStyle"
+                    android:text="@string/factorial" />
+
+            </TableRow>
+        </TableLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.constraintlayout.motion.widget.MotionLayout>

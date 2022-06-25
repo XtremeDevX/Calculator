@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:motion="http://schemas.android.com/apk/res-auto">
+
+    <Transition
+        android:id="@+id/startTransition"
+        motion:constraintSetEnd="@+id/end"
+        motion:constraintSetStart="@id/start"
+        motion:duration="1000">
+
+        <KeyFrameSet>
+            <KeyAttribute
+                android:visibility="visible"
+                motion:framePosition="1"
+                motion:motionTarget="@id/touch_layout" />
+
+        </KeyFrameSet>
+
+        <OnClick
+            motion:targetId="@id/touch_layout" />
+
+        <OnSwipe
+            motion:dragDirection="dragLeft"
+            motion:touchRegionId="@id/sliding_layout" />
+    </Transition>
+
+    <ConstraintSet android:id="@+id/start">
+
+        <Constraint
+            android:id="@+id/sliding_layout"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="?attr/colorPrimary"
+            android:elevation="10dp"
+            android:paddingVertical="15dp"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintHeight_percent="0.45"
+            motion:layout_constraintStart_toStartOf="@id/negative_margin"
+            motion:layout_constraintWidth_percent="0.8" />
+
+        <Constraint
+            android:id="@+id/touch_layout"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintEnd_toStartOf="@id/sliding_layout"
+            motion:layout_constraintHeight_percent="0.45"
+            motion:layout_constraintHorizontal_bias="0.0"
+            motion:layout_constraintStart_toStartOf="parent">
+            <Transform android:elevation="-10dp" />
+            <CustomAttribute
+                motion:attributeName="BackgroundColor"
+                motion:customColorValue="@color/transparent" />
+        </Constraint>
+        <Constraint
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            motion:layout_constraintTop_toTopOf="parent"
+            motion:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="10dp"
+            android:id="@+id/tv_degree_radian" />
+    </ConstraintSet>
+
+
+    <ConstraintSet android:id="@+id/end">
+
+
+        <Constraint
+            android:id="@+id/sliding_layout"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="?attr/colorPrimary"
+            android:elevation="40dp"
+            android:paddingVertical="15dp"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintHeight_percent="0.45"
+            motion:layout_constraintWidth_percent="0.8" />
+
+        <Constraint
+            android:id="@+id/touch_layout"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintEnd_toStartOf="@id/sliding_layout"
+            motion:layout_constraintHeight_percent="0.45"
+            motion:layout_constraintStart_toStartOf="parent">
+            <Transform android:elevation="10dp" />
+            <CustomAttribute
+                motion:attributeName="BackgroundColor"
+                motion:customColorValue="@color/black_tra" />
+        </Constraint>
+    </ConstraintSet>
+
+</MotionScene>
