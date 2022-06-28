@@ -338,7 +338,7 @@ class Model : ViewModel() {
         mExpression = mExpression.replace("×".toRegex(), "*")
         mExpression = mExpression.replace("π".toRegex(), "pi")
         mExpression = mExpression.replace("√".toRegex(), "sqrt")
-        mExpression = mExpression.replace("lg".toRegex(), "log10")
+        mExpression = mExpression.replace("log".toRegex(), "log10")
         val exp = Expression(mExpression)
         val result = exp.calculate()
 

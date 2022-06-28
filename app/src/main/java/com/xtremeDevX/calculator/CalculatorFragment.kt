@@ -12,26 +12,26 @@ class CalculatorFragment : Fragment(R.layout.fragment_calculator) {
 
     private lateinit var binding: FragmentCalculatorBinding
 
-    lateinit var model: Model
+    private lateinit var model: Model
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentCalculatorBinding.bind(view)
         model = ViewModelProvider(this)[Model::class.java]
 
-        model.result.observe(this) {
+        model.result.observe(viewLifecycleOwner) {
             binding.tvResult.text = it
         }
 
-        model.equalsPressed.observe(this) { equalPressed ->
+        model.equalsPressed.observe(viewLifecycleOwner) { equalPressed ->
             binding.tvResult.visibility = if (equalPressed) View.VISIBLE else View.INVISIBLE
         }
-        model.stringExp.observe(this) {
+        model.stringExp.observe(viewLifecycleOwner) {
             binding.tvExpression.text = it
             binding.svExpression.fullScroll(ScrollView.FOCUS_RIGHT)
         }
 
-        model.isInverse.observe(this) { isInverse ->
+        model.isInverse.observe(viewLifecycleOwner) { isInverse ->
             if (isInverse) {
                 binding.btnSin.text = resources.getString(R.string.trigArcSin)
                 binding.btnCos.text = resources.getString(R.string.trigArcCos)
@@ -45,16 +45,16 @@ class CalculatorFragment : Fragment(R.layout.fragment_calculator) {
             }
         }
 
-        binding.btnZero.setOnClickListener { model.addDigit("0") }
-        binding.btnOne.setOnClickListener { model.addDigit("1") }
-        binding.btnTwo.setOnClickListener { model.addDigit("2") }
-        binding.btnThree.setOnClickListener { model.addDigit("3") }
-        binding.btnFour.setOnClickListener { model.addDigit("4") }
-        binding.btnFive.setOnClickListener { model.addDigit("5") }
-        binding.btnSix.setOnClickListener { model.addDigit("6") }
-        binding.btnSeven.setOnClickListener { model.addDigit("7") }
-        binding.btnEight.setOnClickListener { model.addDigit("8") }
-        binding.btnNine.setOnClickListener { model.addDigit("9") }
+        binding.btnZero.setOnClickListener { model.addDigit(resources.getString(R.string.zero)) }
+        binding.btnOne.setOnClickListener { model.addDigit(resources.getString(R.string.one)) }
+        binding.btnTwo.setOnClickListener { model.addDigit(resources.getString(R.string.two)) }
+        binding.btnThree.setOnClickListener { model.addDigit(resources.getString(R.string.three)) }
+        binding.btnFour.setOnClickListener { model.addDigit(resources.getString(R.string.four)) }
+        binding.btnFive.setOnClickListener { model.addDigit(resources.getString(R.string.five)) }
+        binding.btnSix.setOnClickListener { model.addDigit(resources.getString(R.string.six)) }
+        binding.btnSeven.setOnClickListener { model.addDigit(resources.getString(R.string.seven)) }
+        binding.btnEight.setOnClickListener { model.addDigit(resources.getString(R.string.eight)) }
+        binding.btnNine.setOnClickListener { model.addDigit(resources.getString(R.string.nine)) }
 
         //Operator
         binding.btnAdd.setOnClickListener { model.addOperator("+") }
@@ -103,7 +103,7 @@ class CalculatorFragment : Fragment(R.layout.fragment_calculator) {
 
         binding.btnInverse.setOnClickListener { model.inverse() }
 
-        model.isRadian.observe(this) { isRadian ->
+        model.isRadian.observe(viewLifecycleOwner) { isRadian ->
             if (isRadian) {
                 binding.tvDegreeRadian.text = resources.getString(R.string.radian)
                 binding.btnDegreeRadian.text = resources.getString(R.string.degree)
